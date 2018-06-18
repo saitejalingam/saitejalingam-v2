@@ -1,7 +1,7 @@
 function preload() {
-  this.load.spritesheet("red", "assets/red.png", {
-    frameWidth: 32,
-    frameHeight: 48
+  this.load.spritesheet("red", "assets/chars/red.png", {
+    frameWidth: 16,
+    frameHeight: 21
   });
 
   this.load.tilemapTiledJSON("map", "assets/tilemaps/map.json", null);

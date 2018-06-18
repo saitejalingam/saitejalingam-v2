@@ -13,10 +13,9 @@ function create() {
   map.createStaticLayer("Blockades", layout, 0, 0);
   map.createStaticLayer("Buildings", buildings, 0, 0);
 
-  this.player = this.physics.add.sprite(50, 50, "red");
+  this.player = this.physics.add.sprite(16, 40, "red");
   this.player.setCollideWorldBounds(true);
-  this.cameras.main.startFollow(this.player, true);
-  //   this.cameras.main.setFollowOffset(100, 100);
+  //   this.cameras.main.startFollow(this.player, true);
 
   this.anims.create({
     key: "down",

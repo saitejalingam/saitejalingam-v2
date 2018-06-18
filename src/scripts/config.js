@@ -8,8 +8,9 @@ const config = {
   width: 512,
   height: 512,
   parent: "app",
-  antialias: true,
+  antialias: false,
   framerate: 10,
+  pixelArt: true,
   physics: {
     default: "arcade",
     arcade: {
