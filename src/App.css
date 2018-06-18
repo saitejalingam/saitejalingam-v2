@@ -1,0 +1,15 @@
+canvas {
+  image-rendering: pixelated;
+}
+/* 
+@media screen and (orientation: portrait) {
+  canvas {
+    min-height: calc(100vh);
+  }
+}
+
+@media screen and (orientation: landscape) {
+  canvas {
+    min-width: calc(100vw);
+  }
+} */
