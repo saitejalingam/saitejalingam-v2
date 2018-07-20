@@ -5,9 +5,10 @@ import config from "./scripts/config";
 import "./App.css";
 
 class App extends React.Component {
-  game = new Phaser.Game(config);
+  state = {};
 
   componentDidMount() {
+    this.game = new Phaser.Game(config);
     console.log(this.game);
   }
 

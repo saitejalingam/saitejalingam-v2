@@ -25,4 +25,29 @@ const moveCharacter = self => {
   }
 };
 
-export { ifStationaryStopAnimation, moveCharacter };
+const followCharacter = self => {
+  const canvas_width = window.innerWidth;
+  const canvas_height = window.innerHeight;
+
+  const landscape = canvas_width > canvas_height;
+
+  const scaled_dimension = landscape ? canvas_width : canvas_height;
+  const scroll_dimension = landscape ? canvas_height : canvas_width;
+  const scale = scaled_dimension / 512;
+
+  const canvas_midpoint = scroll_dimension / (2 * scale);
+
+  if (landscape && self.player.y > canvas_midpoint)
+    window.scrollTo({
+      top: (self.player.y - canvas_midpoint) * scale,
+      behavior: "instant"
+    });
+
+  if (!landscape && self.player.x > canvas_midpoint)
+    window.scrollTo({
+      left: (self.player.x - canvas_midpoint) * scale,
+      behavior: "instant"
+    });
+};
+
+export { ifStationaryStopAnimation, moveCharacter, followCharacter };

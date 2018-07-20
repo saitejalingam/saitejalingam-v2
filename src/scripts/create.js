@@ -1,8 +1,11 @@
 function create() {
   this.cursors = this.input.keyboard.createCursorKeys();
+  this.cameras.main.setBounds(0, 0, 512, 512);
+  this.physics.world.setBounds(0, 0, 512, 512);
 
   console.log(this);
   const map = this.make.tilemap({ key: "map" });
+
   const buildings = map.addTilesetImage("Builldings", "3862_1");
   const layout = map.addTilesetImage("Map1", "3863");
 
@@ -15,7 +18,6 @@ function create() {
 
   this.player = this.physics.add.sprite(16, 40, "red");
   this.player.setCollideWorldBounds(true);
-  //   this.cameras.main.startFollow(this.player, true);
 
   this.anims.create({
     key: "down",
