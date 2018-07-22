@@ -10,14 +10,23 @@ function create() {
   const layout = map.addTilesetImage("Map1", "3863");
 
   map.createStaticLayer("Backdrop", layout, 0, 0);
-  map.createStaticLayer("Ocean", layout, 0, 0);
+  const ocean = map.createDynamicLayer("Ocean", layout, 0, 0);
   map.createStaticLayer("Roads", layout, 0, 0);
-  map.createStaticLayer("Decorations", layout, 0, 0);
-  map.createStaticLayer("Blockades", layout, 0, 0);
-  map.createStaticLayer("Buildings", buildings, 0, 0);
+  map.createDynamicLayer("Decorations", layout, 0, 0);
+  const blockades = map.createDynamicLayer("Blockades", layout, 0, 0);
+  const structures = map.createDynamicLayer("Buildings", buildings, 0, 0);
 
   this.player = this.physics.add.sprite(16, 40, "red");
   this.player.setCollideWorldBounds(true);
+
+  structures.setCollisionByExclusion([-1]);
+  this.physics.add.collider(structures, this.player);
+
+  ocean.setCollisionByExclusion([-1]);
+  this.physics.add.collider(ocean, this.player);
+
+  blockades.setCollisionByExclusion([-1]);
+  this.physics.add.collider(blockades, this.player);
 
   this.anims.create({
     key: "down",
