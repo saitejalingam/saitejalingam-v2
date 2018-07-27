@@ -11,8 +11,8 @@ function create() {
 
   map.createStaticLayer("Backdrop", layout, 0, 0);
   const ocean = map.createDynamicLayer("Ocean", layout, 0, 0);
-  map.createStaticLayer("Roads", layout, 0, 0);
-  map.createDynamicLayer("Decorations", layout, 0, 0);
+  const roads = map.createDynamicLayer("Roads", layout, 0, 0);
+  map.createStaticLayer("Decorations", layout, 0, 0);
   const blockades = map.createDynamicLayer("Blockades", layout, 0, 0);
   const structures = map.createDynamicLayer("Buildings", buildings, 0, 0);
 
@@ -27,6 +27,11 @@ function create() {
 
   blockades.setCollisionByExclusion([-1]);
   this.physics.add.collider(blockades, this.player);
+
+  console.log(roads);
+
+  // backdrop.setCollisionByExclusion([-1]);
+  // this.physics.add.collider(backdrop, this.player);
 
   this.anims.create({
     key: "down",
