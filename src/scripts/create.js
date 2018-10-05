@@ -3,35 +3,35 @@ function create() {
   this.cameras.main.setBounds(0, 0, 512, 512);
   this.physics.world.setBounds(0, 0, 512, 512);
 
-  console.log(this);
+  // console.log(this);
   const map = this.make.tilemap({ key: "map" });
 
   const buildings = map.addTilesetImage("Builldings", "3862_1");
   const layout = map.addTilesetImage("Map1", "3863");
 
   map.createStaticLayer("Backdrop", layout, 0, 0);
-  const ocean = map.createDynamicLayer("Ocean", layout, 0, 0);
-  const roads = map.createDynamicLayer("Roads", layout, 0, 0);
+  map.createStaticLayer("Ocean", layout, 0, 0);
+  map.createStaticLayer("Roads", layout, 0, 0);
   map.createStaticLayer("Decorations", layout, 0, 0);
-  const blockades = map.createDynamicLayer("Blockades", layout, 0, 0);
-  const structures = map.createDynamicLayer("Buildings", buildings, 0, 0);
+  map.createStaticLayer("Blockades", layout, 0, 0);
+  map.createStaticLayer("Buildings", buildings, 0, 0);
 
   this.player = this.physics.add.sprite(16, 40, "red");
   this.player.setCollideWorldBounds(true);
 
-  structures.setCollisionByExclusion([-1]);
-  this.physics.add.collider(structures, this.player);
+  const collisions = map.getObjectLayer("Collision")["objects"];
+  const collisionGroup = this.physics.add.staticGroup({});
+  collisions.forEach(object => {
+    const x = collisionGroup.create(object.x, object.y);
+    x.setScale(object.width / 32, object.height / 32);
+    x.setOrigin(0);
 
-  ocean.setCollisionByExclusion([-1]);
-  this.physics.add.collider(ocean, this.player);
+    x.body.width = object.width;
+    x.body.height = object.height;
+  });
 
-  blockades.setCollisionByExclusion([-1]);
-  this.physics.add.collider(blockades, this.player);
-
-  console.log(roads);
-
-  // backdrop.setCollisionByExclusion([-1]);
-  // this.physics.add.collider(backdrop, this.player);
+  collisionGroup.refresh();
+  this.physics.add.collider(collisionGroup, this.player);
 
   this.anims.create({
     key: "down",

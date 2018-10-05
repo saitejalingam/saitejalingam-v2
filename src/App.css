@@ -4,12 +4,14 @@ canvas {
 
 @media screen and (orientation: portrait) {
   canvas {
-    min-height: calc(100vh);
+    min-height: calc(100vh) !important;
+    width: auto !important;
   }
 }
 
 @media screen and (orientation: landscape) {
   canvas {
-    min-width: calc(100vw);
+    min-width: calc(100vw) !important;
+    height: auto !important;
   }
 }

@@ -9,7 +9,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.game = new Phaser.Game(config);
-    console.log(this.game);
+    // console.log(this.game);
   }
 
   render() {
