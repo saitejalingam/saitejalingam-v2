@@ -7,21 +7,23 @@ import "./App.css";
 
 class App extends React.Component {
   state = {
-    enableTouch: false
+    showTouchControls: false
   };
 
   componentDidMount() {
     this.game = new Phaser.Game(config);
+    document.addEventListener("touchstart", this.handleTouchStart);
   }
 
-  enableTouch = () => {
-    this.setState({ enableTouch: true });
+  handleTouchStart = () => {
+    this.setState({ showTouchControls: true });
+    document.removeEventListener("touchstart", this.handleTouchStart);
   };
 
   render() {
     return (
       <div id="app">
-        <Tutorial onTouch={this.enableTouch} />
+        <Tutorial />
       </div>
     );
   }

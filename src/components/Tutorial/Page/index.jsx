@@ -18,7 +18,7 @@ class Page extends Component {
   }
 
   render() {
-    return <div style={{ width: "75%" }} id="page" />;
+    return <div style={{ width: "80%" }} id="page" />;
   }
 }
 
