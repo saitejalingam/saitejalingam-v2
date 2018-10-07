@@ -2,18 +2,28 @@ import React from "react";
 import Phaser from "phaser";
 
 import config from "./scripts/config";
+import Tutorial from "./components/Tutorial";
 import "./App.css";
 
 class App extends React.Component {
-  state = {};
+  state = {
+    enableTouch: false
+  };
 
   componentDidMount() {
     this.game = new Phaser.Game(config);
-    // console.log(this.game);
   }
 
+  enableTouch = () => {
+    this.setState({ enableTouch: true });
+  };
+
   render() {
-    return <div id="app" />;
+    return (
+      <div id="app">
+        <Tutorial onTouch={this.enableTouch} />
+      </div>
+    );
   }
 }
 
