@@ -3,6 +3,7 @@ import Phaser from "phaser";
 
 import config from "./scripts/config";
 import Tutorial from "./components/Tutorial";
+import Card from "./components/Card";
 import "./App.css";
 
 class App extends React.Component {
@@ -24,6 +25,7 @@ class App extends React.Component {
     return (
       <div id="app">
         <Tutorial />
+        <Card />
       </div>
     );
   }
